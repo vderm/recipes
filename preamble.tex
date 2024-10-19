@@ -7,42 +7,31 @@
 \usepackage{lipsum} % For sample text
 \usepackage{fancyhdr}
 \usepackage{marginnote} % For margin notes
+\usepackage[absolute,overlay]{textpos}
+\usepackage{titlesec}
 
 % Geometry setup for margins
 \geometry{
-  left=100mm, 
-  right=40mm,
+  left=75mm, 
+  right=25mm,
   top=25mm,
-  bottom=40mm,
+  bottom=50mm,
   marginparwidth=40mm,
-  marginparsep=25mm,
+  marginparsep=10mm,
 }
 \reversemarginpar % This moves the margin notes to the left
-
-% Redefine marginnote to be left aligned
-\renewcommand{\marginnote}[1]{
-    \ifhmode\leavevmode\fi
-    \begin{flushleft}
-    \marginpar{\raggedright #1}
-    \end{flushleft}
-}
-
-% % Custom settings for the recipe title and page numbers
-% \titleformat{\chapter}[hang] % Customize the chapter title (recipe title)
-%   {\Huge\bfseries\sffamily} % Large Helvetica sans-serif font
-%   {} % No chapter number
-%   {0pt} % No spacing between the title and chapter number
-%   {\Huge\raggedright\hspace{-1in}} % Shift the title 1 inch to the left
+\setlength{\footskip}{25mm} % Adjust the value as needed
 
 % Disable "Chapter X" from appearing
 \makeatletter
 \renewcommand{\@makechapterhead}[1]{%
   {\parindent \z@ \raggedright \normalfont
-    \interlinepenalty\@M
+    % \vspace*{-50mm} % Adjust the title position upwards
     \Huge \bfseries \sffamily \hspace{-50mm}#1\par\nobreak
-    \vskip 100\p@}
-    \thispagestyle{fancy}  % add page number
-  }
+    \vspace*{35mm} % Add some space after the title if needed
+    }
+    \thispagestyle{fancy}  % Keep the page number style
+}
 \makeatother
 
 
@@ -54,3 +43,18 @@
 \renewcommand{\footrulewidth}{0pt} % No footer rule
 \pagestyle{fancy}
 
+
+% % Custom part command to center text on the page
+% \makeatletter
+% \renewcommand{\part}[1]{%
+%     \cleardoublepage % Ensure the part starts on a new page
+%     \thispagestyle{empty} % Remove page numbers
+%     \vfill % Add vertical space to push content down
+%     \begin{center} % Center the text
+%         \Huge \textsf{Part \thepart} \\[1ex] % Display "Part I"
+%         \LARGE \textsf{#1} % Display the part name
+%     \end{center}
+%     \vfill % Add vertical space to push content up
+%     \clearpage % Start a new page after the part title
+% }
+% \makeatother

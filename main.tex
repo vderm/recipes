@@ -1,4 +1,4 @@
-\documentclass{book}
+\documentclass[openany, oneside, 12pt]{book}
 \input{preamble}
 
 \title{My Recipe Book}
@@ -7,15 +7,17 @@
 \begin{document}
 
 \frontmatter
-% \maketitle
-% \tableofcontents
+\maketitle
+\tableofcontents
 
 \mainmatter
 
 \part{Appetizers}
+\fancyfoot[C]{\small\textsf{APPETIZERS}}
 \include{recipe_001}
 
 \part{Other}
+\fancyfoot[C]{\small\textsf{OTHER}}
 \include{recipe_002}
 
 \end{document}

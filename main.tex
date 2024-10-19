@@ -1,168 +1,22 @@
-% Import preamble which contains document class and macros
-\include{preamble}
+\documentclass{book}
+\input{preamble}
 
-% Book metadata
-\title{Family Cookbook}
-\date{The First Edition}
-\author{Elsa \mbox{Monanteras} \& Vasken \mbox{Dermardiros}}
-\publisher{Vasquise Publishing Ltd.}
-
+\title{My Recipe Book}
+\author{Author Name}
 
 \begin{document}
 
-% Front matter
 \frontmatter
+% \maketitle
+% \tableofcontents
 
-% r.1 blank page
-% \blankpage
-
-% r.3 full title page
-\maketitle
-
-% v.4 copyright page
-\newpage
-\begin{fullwidth}
-~\vfill
-\thispagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{\baselineskip}
-Copyright \copyright\ \the\year\ \thanklessauthor
-
-\par\smallcaps{Published by \thanklesspublisher}
-
-% \par\smallcaps{tufte-latex.googlecode.com}
-
-\par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
-use this file except in compliance with the License. You may obtain a copy
-of the License at \url{http://www.apache.org/licenses/LICENSE-2.0}. Unless
-required by applicable law or agreed to in writing, software distributed
-under the License is distributed on an \smallcaps{``AS IS'' BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND}, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.\index{license}
-
-\par\textit{First printing, \monthyear}
-\end{fullwidth}
-
-% r.5 contents
-\tableofcontents
-
-% \listoffigures
-
-% \listoftables
-
-% r.7 dedication
-% \cleardoublepage
-\newpage
-~\vfill
-\begin{doublespace}
-\noindent\fontsize{18}{22}\selectfont\itshape
-\nohyphenation
-Conversation is the enemy of good wine and food.
-\vspace{-24pt}
-\begin{flushright}
- -- \mbox{Alfred~Hitchcock}
-\end{flushright}
-\end{doublespace}
-\vfill
-\vfill
-
-
-% r.9 introduction
-% \cleardoublepage
-\newpage
-\chapter*{Introduction}
-
-\newthought{Tradition is cumulative} and recipes are the bread crumbs transporting us back home. This book is a collection of recipes we have grown up with along with some anecdotes, photos and tidbits. New staples are welcome to make their ways into this \textit{codex}.
-
-\bigskip
-\noindent
-\textit{Vasken Dermardiros, April 2024.}
-
-\newgeometry{
-  left=75mm, 
-  right=40mm,
-  top=75mm,
-  marginparwidth=40mm,
-  marginparsep=15mm,
-}
-\reversemarginpar % This moves the margin notes to the left
-
-
-% Start the main matter (normal chapters)
 \mainmatter
 
-\part{Dermardiros Family}
-\include{dermardiros/clementinesalad}
-\include{dermardiros/strawberrysalad}
-\include{dermardiros/tahini}
-\include{dermardiros/betteraves}
-\include{dermardiros/lahanai_dolma}
-\include{dermardiros/mantuh}
-\include{dermardiros/foul}
-\include{dermardiros/koubeba}
-\include{dermardiros/souloukefteh}
-\include{dermardiros/batons_sale}
-\include{dermardiros/beureg}
-\include{dermardiros/quiche}
-\include{dermardiros/hamquiche}
-\include{dermardiros/meatpies}
-\include{dermardiros/pastameatsauce}
-\include{dermardiros/biscuits_grandmere}
-\include{dermardiros/grandma_cake}
-\include{dermardiros/chocolate_fridge_cake}
-\include{dermardiros/khorabie}
-\include{dermardiros/cheureg_greatgrandma}
-\include{dermardiros/anoushabour}
-\include{dermardiros/katnabour}
-\include{dermardiros/yulelog}
-\include{dermardiros/ciambalone}
-\include{dermardiros/best_chocolatechip_cookies}
-\include{dermardiros/banana_cake}
-% \include{dermardiros/cheureg}  % images in \dermardiros\images
-\restoregeometry
+\part{Appetizers}
+\include{recipe_001}
 
-\part{Monanteras Family}
-\include{monanteras/patatesavga}
-\include{monanteras/fakes}
-\include{monanteras/fassolakia}
-\include{monanteras/mavromatika}
-\include{monanteras/kolokithokeftedes}
-\include{monanteras/hilopites with chicken}
-\include{monanteras/chicken with potatoes}
-\include{monanteras/meatsauce}
-\include{monanteras/lasagna}
-\include{monanteras/gemista}
-\include{monanteras/lamb and potatoes}
-% \include{monanteras/chocolate_cake}
-\include{monanteras/easter_koulourakia}
-\include{monanteras/eastereggs}
-% \include{monanteras/moustokouloura}
-\include{monanteras/karidopita}
-\include{monanteras/portokalopita}
-\include{monanteras/melomakarona}
-\include{monanteras/diples}
-\include{monanteras/lemon_cake}
-\include{monanteras/tsoureki}
-\include{monanteras/bikini_ladies}
-
-\part{Elsa \& Vasken}
-\include{velsa/gigantest_plaki}
-\include{velsa/roasted_beet_salad_with_ricotta}
-\include{velsa/kourabiewithnuts}
-\include{velsa/tsoureki_choreg}
-% \include{velsa/babka}
-% \include{extra/chocolate_chip_cookies}
-
-
-%%
-% The back matter contains appendices, bibliographies, indices, glossaries, etc.
-
-\backmatter
-
-% \bibliography{sample-handout}
-% \bibliographystyle{plainnat}
-
-\printindex
+\part{Other}
+\include{recipe_002}
 
 \end{document}
+

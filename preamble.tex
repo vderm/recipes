@@ -1,31 +1,60 @@
 % Book class with custom preamble
 \usepackage{graphicx}
 \usepackage{helvet} % For Helvetica font
+\renewcommand{\familydefault}{\sfdefault} % Set sans-serif (Helvetica) as default family
 % \renewcommand{\rmdefault}{serif} % Serif font for body
-% \renewcommand{\sfdefault}{phv} % Sans-serif Helvetica for title and page numbers
 \usepackage{geometry}
 \usepackage{lipsum} % For sample text
 \usepackage{fancyhdr}
 \usepackage{marginnote} % For margin notes
-\usepackage[absolute,overlay]{textpos}
-\usepackage{titlesec}
 \usepackage[document]{ragged2e}  % align left
-\usepackage[skip=12pt]{parskip}
+\usepackage[skip=12pt]{parskip}  % space between paragraphs
+% \usepackage[absolute,overlay]{textpos}
+% \usepackage{titlesec}
+% \usepackage{etoolbox}
+\usepackage{fullwidth}
+\usepackage{url}
+% \usepackage{slantsc}  % smallcaps
+\usepackage{gensymb}  % degree sign using `\degree`
+% for Greek re!
+\usepackage[utf8]{inputenc}
+\usepackage[greek, english]{babel}
+
+% For graphics / images
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+% Prints the month name (e.g., January) and the year (e.g., 2008)
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
 
 % Geometry setup for margins
-\geometry{
-  left=85mm, 
-  right=15mm,
-  top=25mm,
-  bottom=50mm,
-  marginparwidth=50mm,
-  marginparsep=10mm,
+\geometry{}  % default margins
+% Geometry for recipes
+\newcommand{\userecipegeometry}{
+  \newgeometry{
+    left=85mm, 
+    right=15mm,
+    top=25mm,
+    bottom=50mm,
+    marginparwidth=50mm,
+    marginparsep=10mm,
+  }
+  \reversemarginpar % This moves the margin notes to the left
 }
-\reversemarginpar % This moves the margin notes to the left
-\setlength{\footskip}{25mm} % Adjust the value as needed
+\setlength{\footskip}{25mm} % Add space for page number
 
 \renewcommand{\marginnote}[1]{%
     \marginpar{%
+        \vspace*{18pt}  % move margin note up to align with text
         \raggedright % Left-align text in the margin
         #1%
     }%
@@ -37,7 +66,7 @@
 \renewcommand{\@makechapterhead}[1]{%
   {\parindent \z@ \raggedright \normalfont
     % \vspace*{-50mm} % Adjust the title position upwards
-    \Huge \bfseries \sffamily \hspace{-60mm}#1\par\nobreak
+    \Huge \bfseries \hspace{-60mm}#1\par\nobreak
     \vspace*{35mm} % Add some space after the title if needed
     }
     \thispagestyle{fancy}  % Keep the page number style
@@ -47,24 +76,24 @@
 
 % Header/Footer setup
 \fancyhf{} % Clear existing header/footer
-\fancyfoot[L]{\Huge\textsf{\hspace{-60mm}\thepage}} % Large page number moved 1 inch left
-% \fancyfoot[C]{\large\textsf{\partmark}} % Center the part title (e.g., "Appetizers") without "Part 1"
+\fancyfoot[L]{\Huge\textsf{\hspace{-25mm}\thepage}} % Large page number moved 1 inch left
 \renewcommand{\headrulewidth}{0pt} % No header rule
 \renewcommand{\footrulewidth}{0pt} % No footer rule
 \pagestyle{fancy}
 
+% title page
+\makeatletter
+\renewcommand{\maketitle}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+{\fontsize{24}{24}\selectfont\textit{\@author}\par}
+\vspace{1.75in}{\fontsize{48}{64}\sffamily\@title\par}
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\textsc{\@date}}\par}
+\vfill{\fontsize{14}{14}\selectfont\textit{\publisher}\par}
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
 
-% % Custom part command to center text on the page
-% \makeatletter
-% \renewcommand{\part}[1]{%
-%     \cleardoublepage % Ensure the part starts on a new page
-%     \thispagestyle{empty} % Remove page numbers
-%     \vfill % Add vertical space to push content down
-%     \begin{center} % Center the text
-%         \Huge \textsf{Part \thepart} \\[1ex] % Display "Part I"
-%         \LARGE \textsf{#1} % Display the part name
-%     \end{center}
-%     \vfill % Add vertical space to push content up
-%     \clearpage % Start a new page after the part title
-% }
-% \makeatother
+% part page without page numbers
+\patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}

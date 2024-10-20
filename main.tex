@@ -1,24 +1,36 @@
 \documentclass[openany, oneside, 11pt]{book}
 \input{preamble}
 
-\title{My Recipe Book}
-\author{Author Name}
+\title{Family Cookbook}
+\author{Elsa \mbox{Monanteras} \& Vasken \mbox{Dermardiros}}
+\date{The First Edition}
+\newcommand{\publisher}{Vasquise Publishing Group Inc.}
+
 
 \begin{document}
 
 \frontmatter
 \maketitle
+\include{copyright}
 \tableofcontents
 
-\mainmatter
 
+\mainmatter
 \part{Appetizers}
 \fancyfoot[C]{\small{Appetizers}}
+\userecipegeometry
 \include{recipe_001}
+\restoregeometry
 
 \part{Other}
 \fancyfoot[C]{\small{Other}}
+\userecipegeometry
 \include{recipe_002}
+\restoregeometry
+
+
+\backmatter
+% \printindex
 
 \end{document}
 

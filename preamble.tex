@@ -48,28 +48,40 @@
     marginparwidth=50mm,
     marginparsep=10mm,
   }
-  \reversemarginpar % This moves the margin notes to the left
+  \reversemarginpar  % This moves the margin notes to the left
 }
 \setlength{\footskip}{25mm} % Add space for page number
 
-\renewcommand{\marginnote}[1]{%
-    \marginpar{%
-        \vspace*{18pt}  % move margin note up to align with text
-        \raggedright % Left-align text in the margin
-        #1%
-    }%
+% override marginnote behaviour
+\renewcommand{\marginnote}[1]{
+  \marginpar{
+    \vspace*{18pt}  % move margin note up to align with text
+    \raggedright  % Left-align text in the margin
+    #1
+  }
 }
 
+% function to add pages to ensure content starts on evenpage
+\newcommand{\ensureevenpage}{
+  \makeatletter
+  \ifodd\value{page}  % Check if the current page is odd
+    \clearpage  % Ensure we're at a page boundary
+    \thispagestyle{empty}  % Disable footers/headers on the blank page
+    \hbox{}  % Create a blank page
+    \newpage  % Move to the next page
+  \fi
+  \makeatother
+}
 
 % Disable "Chapter X" from appearing
 \makeatletter
-\renewcommand{\@makechapterhead}[1]{%
+\renewcommand{\@makechapterhead}[1]{
   {\parindent \z@ \raggedright \normalfont
     % \vspace*{-50mm} % Adjust the title position upwards
     \Huge \bfseries \hspace{-60mm}#1\par\nobreak
     \vspace*{35mm} % Add some space after the title if needed
-    }
-    \thispagestyle{fancy}  % Keep the page number style
+  }
+  \thispagestyle{fancy}  % Keep the page number style
 }
 \makeatother
 
@@ -83,17 +95,18 @@
 
 % title page
 \makeatletter
-\renewcommand{\maketitle}{%
-\begingroup%
-\setlength{\parindent}{0pt}
-{\fontsize{24}{24}\selectfont\textit{\@author}\par}
-\vspace{1.75in}{\fontsize{48}{64}\sffamily\@title\par}
-\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\textsc{\@date}}\par}
-\vfill{\fontsize{14}{14}\selectfont\textit{\publisher}\par}
-\thispagestyle{empty}
-\endgroup
+\renewcommand{\maketitle}{
+  \begingroup
+    \setlength{\parindent}{0pt}
+    {\fontsize{24}{24}\selectfont\textit{\@author}\par}
+    \vspace{1.75in}{\fontsize{48}{64}\sffamily\@title\par}
+    \vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\textsc{\@date}}\par}
+    \vfill{\fontsize{14}{14}\selectfont\textit{\publisher}\par}
+    \thispagestyle{empty}
+  \endgroup
 }
 \makeatother
 
 % part page without page numbers
 \patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
+

@@ -7,8 +7,6 @@
 \usepackage{lipsum} % For sample text
 \usepackage{fancyhdr}
 \usepackage{marginnote} % For margin notes
-\usepackage[document]{ragged2e}  % align left
-\usepackage[skip=12pt]{parskip}  % space between paragraphs
 % \usepackage[absolute,overlay]{textpos}
 % \usepackage{titlesec}
 % \usepackage{etoolbox}
@@ -19,6 +17,10 @@
 % for Greek re!
 \usepackage[utf8]{inputenc}
 \usepackage[greek, english]{babel}
+
+% alignment and spacing
+\usepackage[document]{ragged2e}  % align left
+\usepackage[skip=14pt]{parskip}  % space between paragraphs
 
 % For graphics / images
 \usepackage{graphicx}
@@ -55,10 +57,27 @@
 % override marginnote behaviour
 \renewcommand{\marginnote}[1]{
   \marginpar{
-    \vspace*{18pt}  % move margin note up to align with text
+    \vspace*{19.5pt}  % move margin note up to align with text
     \raggedright  % Left-align text in the margin
     #1
   }
+}
+
+% newthought equivalent
+\newcommand{\newthought}[1]{
+    \textsc{#1}
+}
+
+% marginfigure
+\newcommand{\marginfigure}[2][]{
+    \marginnote{
+        \centering
+        \includegraphics[width=\marginparwidth]{#2}
+        \ifx&#1&
+        \else
+            \captionof{figure}{#1}
+        \fi
+    }
 }
 
 % function to add pages to ensure content starts on evenpage

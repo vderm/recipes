@@ -17,6 +17,7 @@
 % for Greek re!
 \usepackage[utf8]{inputenc}
 \usepackage[greek, english]{babel}
+\usepackage{etoolbox}
 
 % alignment and spacing
 \usepackage[document]{ragged2e}  % align left
@@ -35,8 +36,11 @@
 }
 
 % Generates the index
-\usepackage{makeidx}
-\makeindex
+\usepackage{imakeidx}
+\makeindex[intoc,columns=3]
+% \indexsetup{firstpagestyle=fancy}  % Customize the appearance of the chapter heading for Index
+\indexsetup{firstpagestyle=empty}  % Customize the appearance of the chapter heading for Index
+\renewcommand{\indexspace}{\vskip 16pt}  % Adjust spacing between index groups 
 
 % Geometry setup for margins
 \geometry{}  % default margins
@@ -51,6 +55,16 @@
     marginparsep=10mm,
   }
   \reversemarginpar  % This moves the margin notes to the left
+}
+\newcommand{\useindexgeometry}{
+  \newgeometry{
+    left=25mm, 
+    right=15mm,
+    top=-5mm,
+    bottom=50mm,
+    % marginparwidth=50mm,
+    % marginparsep=10mm,
+  }
 }
 \setlength{\footskip}{25mm} % Add space for page number
 
@@ -104,6 +118,9 @@
 }
 \makeatother
 
+% Redefine Table of Contents Chapter heading
+\renewcommand{\contentsname}{}
+\patchcmd{\tableofcontents}{\chapter*}{\chapter}{}{}
 
 % Header/Footer setup
 \fancyhf{} % Clear existing header/footer
@@ -116,7 +133,7 @@
 \makeatletter
 \renewcommand{\maketitle}{
   \begingroup
-    \setlength{\parindent}{0pt}
+    \setlength{\parindent}{-8mm}
     {\fontsize{24}{24}\selectfont\textit{\@author}\par}
     \vspace{1.75in}{\fontsize{48}{64}\sffamily\@title\par}
     \vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\textsc{\@date}}\par}

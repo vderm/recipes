@@ -12,9 +12,9 @@
 \frontmatter
 \maketitle
 \include{copyright}
-% TODO: align heading
-% TODO: big page number
+\userecipegeometry
 \tableofcontents
+\restoregeometry
 
 
 \mainmatter
@@ -91,25 +91,10 @@
 % \include{extra/chocolate_chip_cookies}
 \restoregeometry
 
-% TODO: DELETE these, testing...
-% \ensureevenpage
-% \part{Appetizers}
-% \fancyfoot[C]{\small{Appetizers}}
-% \userecipegeometry
-% \include{recipe_001}
-% \restoregeometry
-%
-% \ensureevenpage
-% \part{Other}
-% \fancyfoot[C]{\small{Other}}
-% \userecipegeometry
-% \include{recipe_002}
-% \restoregeometry
-
 
 \backmatter
-% TODO: align heading
-% TODO: big page number
+\fancyfoot[C]{\small{Index}}
+\userecipegeometry
 \printindex
 
 \end{document}

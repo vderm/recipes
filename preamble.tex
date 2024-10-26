@@ -7,9 +7,6 @@
 \usepackage{lipsum} % For sample text
 \usepackage{fancyhdr}
 \usepackage{marginnote} % For margin notes
-% \usepackage[absolute,overlay]{textpos}
-% \usepackage{titlesec}
-% \usepackage{etoolbox}
 \usepackage{fullwidth}
 \usepackage{url}
 % \usepackage{slantsc}  % smallcaps
@@ -17,7 +14,8 @@
 % for Greek re!
 \usepackage[utf8]{inputenc}
 \usepackage[greek, english]{babel}
-\usepackage{etoolbox}
+\usepackage{etoolbox}  % place objects anywhere
+\usepackage{subcaption}  % multiple figures grouped together
 
 % alignment and spacing
 \usepackage[document]{ragged2e}  % align left
@@ -91,6 +89,24 @@
     \small{#2} % Caption from argument
   }
 }
+
+% side-by-side figure
+\newcommand{\twosidecaption}[4]{
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{#1}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \includegraphics[width=\textwidth]{#2}
+        \end{subfigure}
+        \vskip 6pt
+        \raggedright \small{#3}
+        \label{#4}
+    \end{figure}
+}
+
 
 
 % newthought equivalent

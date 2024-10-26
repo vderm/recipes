@@ -42,6 +42,10 @@
 \indexsetup{firstpagestyle=empty}  % Customize the appearance of the chapter heading for Index
 \renewcommand{\indexspace}{\vskip 16pt}  % Adjust spacing between index groups 
 
+% make enumeration numbers be stuck to margin
+\usepackage{enumitem}
+\setlist[enumerate,1]{leftmargin=*, labelwidth=0pt, align=left}
+
 % Geometry setup for margins
 \geometry{}  % default margins
 % Geometry for recipes
@@ -76,6 +80,18 @@
     #1
   }
 }
+
+% margin figure of sorts
+\newcommand{\marginalfigure}[2]{
+  \marginpar{
+    \vspace{2\baselineskip} % Adjust vertical space
+    \includegraphics[width=50mm]{#1} % Include image with path from argument
+    % \vspace{0.5\baselineskip} % Space between image and caption
+    \vskip 6pt
+    \small{#2} % Caption from argument
+  }
+}
+
 
 % newthought equivalent
 \newcommand{\newthought}[1]{

@@ -42,7 +42,9 @@
 
 % make enumeration numbers be stuck to margin
 \usepackage{enumitem}
-\setlist[enumerate,1]{leftmargin=*, labelwidth=0pt, align=left}
+\setlist[enumerate,1]{leftmargin=*, labelwidth=0pt, align=left}  % large numbers, no point
+% \setlist[enumerate,1]{label=\Large\arabic*, labelsep=0.5em}  % aligned with margins
+% \setlist[enumerate,1]{label=\Large\arabic*, labelsep=0.5em, leftmargin=*, labelwidth=0pt, align=left}  % both above combined
 
 % Geometry setup for margins
 \geometry{}  % default margins
@@ -80,30 +82,43 @@
 }
 
 % margin figure of sorts
-\newcommand{\marginalfigure}[2]{
+\newcommand{\marginalfigure}[3]{
   \marginpar{
     \vspace{2\baselineskip} % Adjust vertical space
     \includegraphics[width=50mm]{#1} % Include image with path from argument
     % \vspace{0.5\baselineskip} % Space between image and caption
     \vskip 6pt
     \small{#2} % Caption from argument
+    \label{#3}
   }
 }
 
 % side-by-side figure
-\newcommand{\twosidecaption}[4]{
+\newcommand{\twosidecaptionfigure}[4]{
     \begin{figure}[h]
         \centering
-        \begin{subfigure}[b]{0.48\textwidth}
+        \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{#1}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
+        \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{#2}
         \end{subfigure}
         \vskip 6pt
         \raggedright \small{#3}
         \label{#4}
+    \end{figure}
+}
+
+% single figure
+\newcommand{\captionfigure}[3]{
+    \begin{figure}[h]
+        \begin{subfigure}[b]{0.79\textwidth}
+            \includegraphics[width=\textwidth]{#1}
+        \end{subfigure}
+        \vskip 6pt
+        \raggedright \small{#2}
+        \label{#3}
     \end{figure}
 }
 
